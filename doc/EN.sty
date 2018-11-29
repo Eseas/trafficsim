@@ -1,0 +1,83 @@
+% LTplius: bendri lietuviškų dokumentų nustatymai, nesantys
+% lietuviškame babel išplėtime.
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{LTPlius}[2014/12/24 1.4.0 Lithuanian language
+additions]
+
+% Keisime keletą babel parametrų
+\RequirePackage{polyglossia} 
+\setdefaultlanguage{english}
+\setotherlanguage{english}
+
+% Skyriaus pirmo pirma eilutė turi būti atitraukta
+\RequirePackage{indentfirst}
+
+% Kadangi skaičių trupmeninės dalys atskiriamos kableliu,
+% po jo standartiškai dedamas tarpelis nepageidaujamas
+\RequirePackage{icomma}
+
+% Taškai po skyrių, poskyrių ir kt. numerių turi būti antraštėse,
+% turinyje, bet ne nuorodose.  Modifikuojame keisdami vidinę 
+% LaTeX @sect komandą.
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+       % Buvo: \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+    \protected@edef\@svsec{\csname the#1\endcsname.\quad\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par}%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+           % Buvo: \protect\numberline{\csname the#1\endcsname}%
+        \protect\numberline{\csname the#1\endcsname.}%
+      \fi
+      #7}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+            % Buvo: \protect\numberline{\csname the#1\endcsname}%
+          \protect\numberline{\csname the#1\endcsname.}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}}
+
+% Po paragrafo ir poparagrafio antraštės dedamas taškas.
+\newcommand{\@adddot}[1]{#1.}
+%
+%% Paragrafo antraštė atitraukiama kaip pastraipos pradžia.
+%\renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
+%  {3.25ex \@plus1ex \@minus.2ex}%
+%  {-1em}%
+%  {\normalfont\normalsize\bfseries\@adddot}}
+%
+%\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+%  {3.25ex \@plus1ex \@minus .2ex}%
+%  {-1em}%
+%  {\normalfont\normalsize\bfseries\@adddot}}
+%
+%% Lietuviškai formatuojame teoremų antraštes --- pirmiausia eina
+%% teoremos numeris, pavadinimas (jei yra), teoremos tipas ir taškas.
+%\def\@begintheorem#1#2{\trivlist
+%  % Buvo:   \item[\hskip \labelsep{\bfseries #1\ #2}]\itshape}
+%  \item[\hskip \labelsep{\bfseries #2\ #1.}]\itshape}
+%\def\@opargbegintheorem#1#2#3{\trivlist
+%  % Buvo:   \item[\hskip \labelsep{\bfseries #1\ #2\ (#3)}]\itshape}
+%      \item[\hskip \labelsep{\bfseries #2\ (#3)\ #1.}]\itshape}
+%
+%% Dedame tašką po aprašomo dalyko.
+%\renewcommand*\descriptionlabel[1]{\hspace\labelsep
+%                                \normalfont\bfseries #1.}

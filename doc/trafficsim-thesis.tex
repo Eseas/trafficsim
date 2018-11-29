@@ -1,0 +1,89 @@
+\documentclass{VUMIFPSbakalaurinis}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{lscape}
+
+%Mano pridėti paketai
+\lstset
+{ %Formatting for code in appendix
+	language=Erlang,
+	basicstyle=\footnotesize,
+	numbers=left,
+	xleftmargin=0.5cm,
+	stepnumber=1,
+	showstringspaces=false,
+	tabsize=2,
+	breaklines=true,
+	breakatwhitespace=false,
+}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+\usepackage{enumitem}
+\usepackage{array}
+
+\setlist{nosep}
+\setlist[itemize]{leftmargin=.788in,labelsep=0.2155in} % 2cm arba 0.75in (~1.9cm)
+\setlist[enumerate]{leftmargin=.788in,labelsep=0.15in} % labelsep turetu but 0.25-simbolio dydis
+
+% Titulinio aprašas
+\university{Vilnius University}
+\faculty{Faculty of Mathematics and informatics}
+\department{Department of Software Engineering}
+\papertype{Master Thesis}
+\title{Title EN}
+\titleineng{Title LT}
+\status{4th year 1st group student}
+\author{Kazimieras Senvaitis}
+\supervisor{Assist. Prof., Dr. Vytautas Valaitis}
+\reviewer{-}
+\date{Vilnius – \the\year}
+
+\bibliography{library}
+
+\begin{document}
+\maketitle
+
+
+\tableofcontents
+
+\sectionnonum{Introduction}
+
+
+In order to reach the goal the following tasks are raised:
+\begin{enumerate}
+	\item Item 1
+\end{enumerate}
+
+%\section{Section 1}
+
+
+
+
+%\sectionnonum{Results}
+
+
+%\sectionnonum{Conclusions}
+
+
+\printbibliography[heading=bibintoc]
+
+\sectionnonum{Abbreviations}
+
+
+%\appendix
+
+%\section{App 1}
+
+
+\end{document}
