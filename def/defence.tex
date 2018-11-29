@@ -1,0 +1,73 @@
+\documentclass{beamer}
+
+\setbeamerfont{framesubtitle}{size=\Large}
+\setbeamerfont{frametitle}{size=\huge}
+
+
+\usepackage{tikz}
+\usepackage{verbatim}
+
+\RequirePackage{polyglossia} 
+\setdefaultlanguage{english}
+\setotherlanguage{lithuanian}
+
+\title{Title}
+\subtitle{Subtitle}
+\author[shortname]{Kazimieras Senvaitis \and \\ Supervisor: Assist. Prof., Dr. Vytautas Valaitis}
+\date{\today}
+
+\addtobeamertemplate{frametitle}{}{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=1.5cm]{mif-logo.png}};
+	\end{tikzpicture}}
+
+\begin{document}
+
+	
+\maketitle
+
+
+\section{Domain}
+
+\subsection{Subdomain}
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+\begin{itemize}
+	\item item 1
+\end{itemize}
+\end{frame}
+
+
+\section{Goal and tasks}
+\begin{frame}{\insertsection}
+	\framesubtitle{\insertsubsection}
+	\textbf{Goal}\\
+	
+	Goal
+	
+	\textbf{Tasks}
+	\begin{itemize}
+		\item item 1
+	\end{itemize}
+\end{frame}
+
+
+
+\section{Results and conclusions}
+
+\begin{frame}
+	\frametitle{Results}
+	\begin{enumerate}
+		\item item 1
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conclusions}
+	\begin{enumerate}
+		\item item 2
+	\end{enumerate}
+\end{frame}
+
+
+\end{document}
