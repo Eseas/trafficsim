@@ -1,4 +1,4 @@
-\documentclass{VUMIFPSbakalaurinis}
+\documentclass{VUMIFPS-master-intro}
 \usepackage{algorithmicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -27,6 +27,7 @@
 	breakatwhitespace=false,
 }
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+%\renewcommand{\section}{}
 \usepackage{csquotes}
 \MakeOuterQuote{"}
 \usepackage{enumitem}
@@ -40,29 +41,213 @@
 \university{Vilnius University}
 \faculty{Faculty of Mathematics and informatics}
 \department{Department of Software Engineering}
-\papertype{Master Thesis}
-\title{Title EN}
-\titleineng{Title LT}
-\status{4th year 1st group student}
+\papertype{Master Thesis. Introduction}
+%\title{Application of Reinforcement and Imitation Learning in Algorithms Used in Microscopic Vehicle Traffic Simulations Focusing on Human Behavior Likeliness}
+%\title{Improvement of Actor Model-Based Decision-making Algorithms Used in Microscopic Vehicle Traffic Simulations in Aspect of Human Behavior Likeliness}
+%\title{Imitation Learning Approach to Improve Human Likeliness in Non-Player Character Driving Algorithms in Simulated Environments for Development of Self Driving Cars}
+%\title{Human Behavior Modeling in Driving Algorithms of Simulated Traffic Environments Using Imitation Learning}
+%\title{Using Imitation Learning to Model Human-Like Behaving Non-Player Characters Acting in Simulated Traffic Environment}
+%\title{Creation of Assessment Method for Human-Like Behavior in Non-Player Characters of vehicle Traffic Simulators}
+\title{An Assessment Method for Human-Like Behavior of Non-Player Characters in Vehicle Traffic Simulators}
+%\title{Improvement of Human Behavior Likeliness in Agent-Based Driving Algorithms Used in Microscopic Vehicle Traffic Simulations}
+\titleineng{Eismo simuliacijose simuliuojamų eismo dalyvių žmogiškos elgsenos vertinimo metodas}
+%\titleineng{Aktorių modeliu remtų sprendimo priėmimo algoritmų naudojamų mikroskopinėse transporto eismo simuliacijose tobulinimas žmogiškos elgsenos aspektu}
+\status{1st year master student}
 \author{Kazimieras Senvaitis}
 \supervisor{Assist. Prof., Dr. Vytautas Valaitis}
-\reviewer{-}
+\reviewer{Partnership Prof., Dr. Vytautas Ašeris}
 \date{Vilnius – \the\year}
 
-\bibliography{library}
+\bibliography{trafficsim}
 
 \begin{document}
 \maketitle
 
+%\sectionnonumnocontent{Summary}
+% Hello everyone! I'm studying master's of Software Engineering at Vilnius University. I will investigate human-like behavior in NPC driving, including decomposition of human behavior likeliness, metrics and implementation of some driving property using imitation learning to improve realism.
+
+%\keywords{human-like behavior, imitation learning, traffic simulation, self driving cars}
 
 \tableofcontents
 
-\sectionnonum{Introduction}
+%\sectionnonum{Introduction}
+\section{Research Problem Area}
+
+% Introduce problems that exist in life
+\textbf{Problematic in domain}
+
+Research in autonomous urban driving is constrained by infrastructure costs and the logistical difficulties of training and testing systems in the physical world. Instrumenting and operating even one robotic car requires significant funds and manpower. Furthermore, a single vehicle is far from sufficient for collecting the requisite data that cover the multitude of corner cases that must be processed for both training and validation. This is true for classic modular pipelines and even more so for data-hungry deep learning techniques. Training and validation of autonomous models for urban driving in the physical world is beyond the reach of most research groups. \cite{Dosovitskiy2017}
+
+%Traffic congestion has become a major problem of the urbanized world. It is very common to find population densities of several thousand persons per square mile in major cities throughout the world \cite{Imsand2013}.  Congestion in the US has increased substantially over the last 25 years with mas- sive amounts of losses pertaining to time, fuel and money \cite{Jain2012}. 
+
+%The road network infrastructure and its design aspects are the main factors affecting the flow of these millions of vehicles. Such design aspects are thus critical to mitigate traffic congestion and entail parameters such as the geometry of roads, number of lanes of each segment, topological design of intersections, right-of-way control schemes at such intersections, speed limits of each road, parking allowance, etc. \cite{Imsand2013}
+
+%Given the high costs involved in building and modifying the road infrastructure, it is unavoidable that achieving an efficient design of the road infrastructure for a given area has to rely on simulation. \cite{Imsand2013}
+
+%As VR applications in flight and driving simulators for training have evolved from its earlier single-user VR system into online virtual globe systems and distributed, networked gaming, the demand to recre- ate large-scale traffic flows, possibly driven by traffic sensor data from the real-world observations, has emerged. \cite{Wilkie2013}.
+
+% Introducing approaches taken solving congession issues 
+\textbf{Available solutions}
+
+Some computer games are used to provide an environment for training self driving cars or generating large data-sets. Modern open-world games such as Grand Theft Auto V (GTA-V), Watch Dogs feature extensive and highly realistic worlds. Their realism is not only in the high fidelity of material appearance and light transport simulation. It is also in the content of the game worlds: the layout of objects and environments, the realistic textures, the motion of vehicles and autonomous characters, the presence of small objects that add detail, and the interaction between the player and the environment. \cite{Richter2016}
+
+However, since GTA-V was not developed as a research tool, it is difficult to collect data from the
+game. Community created game modification scripts are required to even begin to develop ways to collect data from the game, and even then a deep understanding of the game’s APIs and structure is required to develop methods to collect the required affordance indicators. While it is possible to collect the data from video games, it is more beneficial to have a simulator solely dedicated to the purpose of training and testing autonomous vehicles. This leads to another drawback of GTA-V, its extensibility. While scripts can be written to access certain
+variables in the game, it does not natively support any add-ons and is difficult to add custom 3D models to the game. Though the environment of GTA-V is large and diverse, there is still only a limited amount of different scenes that can be produced. For example, most areas of the game are an urban setting, and thus, there is a lack of suburban or rural scenes, leading to a relatively limited amount of data being available for those environments. \cite{Martinez2017}
+
+There are also approaches of linking microscopic 2D traffic simulators with 3D environments. One such traffic simulator is 
+"Simulation of Urban MObility", or "SUMO" for short, which is an open source, microscopic, multi-modal traffic simulation. It allows to simulate how a given traffic demand which consists of single vehicles moves through a given road network. The simulation allows to address a large set of traffic management topics. It is purely microscopic: each vehicle is modelled explicitly, has an own route, and moves individually through the network. Simulations are deterministic by default but there are various options for introducing randomness. \cite{Behrisch2011}
+
+SUMO is made to communicate with Unity3D game engine, allowing 3D representation of high detail modeled and simulated 2D urban environments. 3D environment is additionally populated with static urban objects (trees, houses, etc) and transformed road signs, line markings. As a result it provides configurable urban traffic environment. \cite{Biurrun2017}
+
+Moreover, there are a few purpose built simulators for training self driving cars. One of them is CARLA, an open-source simulator for autonomous driving research. CARLA has been developed from the ground up to support development, training, and validation of autonomous urban driving systems. In addition to open-source code and protocols, CARLA provides open digital assets (urban layouts, buildings, vehicles) that were created for this purpose and can be used freely. The simulation platform supports flexible specification of sensor suites and environmental conditions. CARLA was used to study the performance of three approaches to autonomous driving: a classic modular pipeline, an end-to-end model trained via imitation learning, and an end-to-end model trained via reinforcement learning. The approaches are evaluated in controlled scenarios of increasing difficulty, and their performance is examined via metrics provided by CARLA, illustrating the platform’s utility for autonomous driving research. \cite{Dosovitskiy2017}
+
+One of the challenges in the development of CARLA was the configuration of the behavior of non-player characters, which is important for realism. We based the non-player vehicles on the standard UE4 vehicle model (PhysXVehicles). Kinematic parameters were adjusted for realism. We also implemented a basic controller that governs non-player vehicle behavior: lane following, respecting traffic lights, speed limits, and decision making at intersections. Vehicles and pedestrians can detect and avoid each other. More advanced non-player vehicle controllers can be integrated in the future. \cite{Dosovitskiy2017}
+
+\textbf{Problematic in solutions}
+
+Research performed in both linking of SUMO to Unity3D and CARLA points out the importance of non-player character behavior to realism. A detail review \cite{Eskandarian2017} of existing traffic models also states that models are built on too simplifying assumptions which delude driving dimensions of risk-taking and risk-perception.
+
+Due to variation of driving properties in human drivers, AI trained on such simulations potentially fails in real traffic as situations which were not included when training the AI arise. Simulation of a more human-like behavior traffic is also subject of interest in R\&D department of AUDI group \cite{AUDI2018}.
+
+Limited or none studies have been performed analyzing metrics of human-behavior in driving or even providing guidance of measuring it. This could be imposed by focused research of perfect driving behavior regarding self driving cars. Additionally, deep understanding of simulation computer programs is required to measure NPC behavior.
+
+Even though multiple articles agree on the need of realism in non-player characters, the creators of traffic simulators do not have guidance improving it. Quoting Peter Drucker: "If you can't measure it, you can't improve it".
+
+% Introding my approach
+%Self-driving cars are already sharing the same environment with human controlled cars. However, due to variation of driving properties in human drivers such real world inevitably introduces situations which were not thought of when training the AI of a self driving car.
+
+%In 1969 There are some simula- tions in which the models are so simple that they cannot deal with the dynamic phenomena of traffic flows, and others in which the models are so complicated that they follow the movement of each vehicle. In the former case the conditions imposed on the simulation model are rather artificial, and the obtained results are hardly applicable to a variety of situations. In the latter case the computa- tion time becomes too long, and the model is limited to a fairly small number of vehicles even with the use of high speed digital computers. \cite{Sakai1969}
+
+%URBAN Traffic Control (UTC) systems aim to better schedule vehicles’ movements, exploit the capacity of existing road networks and mitigate traffic congestion in urban areas without significant cost. However, it remains challenging to design an appropriate UTC system, since it is hard to ac- curately describe the complex nature of urban traffic networks to find proper signal timing plans. \cite{Lin2018}
+
+%Early UTC systems were mainly built on some simplified traffic flow models and under the assumption of relatively fixed traffic demand patterns within in a short period [1]. However, the success of such approaches relies on the tedious adjustment of experienced transportation engineers. Moreover, the correlations between intersections often vary noticeably from time to time and thus make the pre-defined signal timing plan not optimal. \cite{Lin2018}
+
+%To solve this problem, model-free data-driven UTC methods, especially reinforcement learning (RL) based UTC methods, received increasing interests in the last decade, along with the fast development of artificial intelligence theory and intelligent control techniques. Instead of optimizing signal timing plan according to simplified traffic flow models, these approaches aim to self-learn the optimal timing policy by analyzing thousands of samples between the change of traffic states and control actions. The invention of human experts in parameter tuning could be replaced by online learning, too. \cite{Lin2018}
 
 
-In order to reach the goal the following tasks are raised:
+
+% MATSim
+
+
+%A shortcoming of the original approach is that the synthetic travellers can only replan between iterations [17]; so-called “within-day” or “en-route” replanning [2] is not possible. However, in some applications it is difficult, or impossible, to model appropriately without the ability to generate or modify plans reactively during the withinday execution. For example, to understand possible emergency evacuation scenarios, it does not make sense to evolve a stable equilibrium. Rather one wants to model individuals dynamically adjusting their plans depending on the unfolding situation. Similarly, within a transport simulation, it is difficult to model taxis in the standard manner. It is far preferable to have them dynamically determine their plans throughout the day. \cite{Padgham2014}
+
+%As a traffic simulation tool, commercial software as computer games, a good example is Cities Skylines, do not fall behind purpose build traffic simulator software. The computer game Cities Skyline is used as an eductional tool for real estate and land use planning studies. It allows simulating and measuring intersections as sophisticated as Three level Roundabout, Diverging Windmill, Turbine, Stack interchange, etc. \cite{Haahtela2015}
+
+
+
+
+
+% Dataset?
+
+% BDI google self driving car?
+
+\section{Research Subject}
+%The subject of this research is agent-based driving algorithms in microscopic vehicle traffic simulations, including:
+%\begin{enumerate}
+%	\item Driving properties of open source microscopic vehicle traffic simulators;
+%	\item Aspects of human-like behavior in driving algorithms;
+%	\item Measurement of human behavior likeliness in driving;
+%	\item Application of deep learning in microscopic vehicle traffic simulations;
+%\end{enumerate}
+
+
+\section{Research Goal and Tasks}
+%This paper aims to improve current actor model-based decision-making algorithms used in microscopic vehicle traffic simulation, to produce traffic with human-like behavior.
+
+%In order to reach the goal the following tasks are raised:
+%\begin{enumerate}
+%	\item Distinguish aspects human behavior likeliness in driving algorithms of vehicle traffic simulators;
+%	\item Distinguish metrics describing human behavior likeliness in driving algorithms of vehicle traffic simulators;
+%	\item Select a part of driving algorithm to potentially improve human-likeliness;
+%	\item Teach neural network to act in particular driving activity;
+%	\item Integrate the new neural network based driving related algorithm with other algorithms;
+%	\item Measure properties of the new algorithm in selected vehicle traffic simulator;
+%\end{enumerate}
+
+% Peter Drucker:
+%"If you can't measure it, you can't improve it."
+
+The main research target is to understand how human-like behavior can be achieved in Non-Player Characters by creating a reliable method to assess it first.
+
+In order to reach the goal the following \textbf{required} tasks are raised:
 \begin{enumerate}
-	\item Item 1
+	\item Using Goal-oriented Requirements Language (GRL) decompose driving tasks in Non-Player Characters driving algorithms of open source traffic simulations CARLA \cite{Dosovitskiy2017} and SUMO \cite{Biurrun2017};
+	\item Create belief–desire–intention (BDI) model describing human driving properties;
+	\item Create BDI based scenarios for analysis of specific driving tasks;
+%	\item Obtain measurements of ideally performed driving task scenario;
+	\item Prepare driving environment allowing people to perform specific driving tasks and measurement of performance;
+	\item Assemble human behavior properties to a assessment (benchmarking) method;
+	\item Using the benchmarking method, assess CARLA simulator and SUMO simulator integrated with Unity3D.
+\end{enumerate}
+
+To further verify provided assessment method, the following \textbf{desired} tasks could be raised:
+\begin{enumerate}
+	\item Analyze whether application of neural networks could induce improvements in NPC human-likeliness.
+	\item Select a part of driving algorithm for potential improvement of human-likeliness;
+	\item Teach neural network to act in particular driving activity;
+	\item Integrate the new neural network based driving related algorithm with other algorithms;
+	\item Measure properties of the new algorithm in selected vehicle traffic simulator;
+\end{enumerate}
+
+% Could use The belief–desire–intention (BDI) model of human practical reasoning was developed by Michael Bratman as a way of explaining future-directed intention.
+
+\section{Research Hypothesis}
+%Applying reinforcement and imitation learning on parts of actor behavior properties induces human-like behavior properties.
+
+\section{Research Method}
+%Writing this thesis, the following methodology will be applied:
+%
+%\begin{enumerate}
+%	\item Formation of research subject and preparation
+%		\begin{enumerate}
+%			\item Fine-graining of research subject
+%			\item Selection of literature
+%			\item Selection of research method
+%			\item Developing research plan
+%		\end{enumerate}
+%	\item Scientific literature analysis and summary
+%		\begin{enumerate}
+%			\item Analysis of technological solutions in traffic simulation algorithms;
+%			\item Analysis of criteria and metrics used in traffic simulation algorithms;
+%			\item Analysis of issues existing in traffic simulation algorithms;
+%			\item Analysis of human behavior likeliness criteria and metrics used in real world simulating computer algorithms;
+%		\end{enumerate}
+%	\item Preparation for experiment
+%		\begin{enumerate}
+%			\item Definition of algorithm implementation principles
+%			\item Design of improved decision-making algorithm
+%			\item Select criteria and metrics for decision-making algorithm
+%			\item Selection of tools for the implementation of the algorithm
+%		\end{enumerate}
+%	\item Conduction of experiment
+%		\begin{enumerate}
+%			\item Implementation of designed algorithm with selected tools;
+%			\item Integrate implemented algorithm into existing traffic simulator;
+%			\item Investigation of the implementation using selected criteria;
+%			\item Measurement of the implementation using selected metrics.
+%		\end{enumerate}
+%\end{enumerate}
+
+
+
+\section{Expected Results}
+
+%\begin{enumerate}
+%	\item Decomposed existing traffic simulators into algorithms;
+%	\item Selected one of the decision-making algorithms and implemented a reinforcement and imitation learning based more human-like alternative;
+%	\item Integrated the new algorithm into existing open-source traffic simulator;
+%	\item Measured metrics of the new algorithm;
+%
+%\end{enumerate}
+
+\begin{enumerate}
+	\item Provided metrics describing human behavior in driving tasks;
+	\item Provided guidance on obtaining NPC behavior metrics from traffic simulators;
+	\item Provided measurement values describing human behavior in specific tasks;
+	\item Provided measurement values describing NPC human-likeliness in traffic simulators;
+	\item Formulated assessment method of NPC driving in aspect of human-likeliness;
+	\item Provided argumented insights on CARLA simulator and SUMO simulator integrated with Unity3D.
 \end{enumerate}
 
 %\section{Section 1}
