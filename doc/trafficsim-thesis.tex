@@ -68,7 +68,7 @@
 
 %\keywords{human-like behavior, imitation learning, traffic simulation, self driving cars}
 
-\tableofcontents
+%\tableofcontents
 
 %\sectionnonum{Introduction}
 \section{Research Problem Area}
@@ -118,7 +118,7 @@ One of such studies has been performed in real world with a car-laboratory. The 
 
 Due to variation of driving properties in human drivers, AI trained on such simulations potentially fails in real traffic as situations which were not included when training the AI arise. Simulation of a more human-like behavior traffic is also subject of interest in R\&D department of AUDI group \cite{AUDI2018}.
 
-Even though multiple articles agree on the need of realism in non-player characters, the creators of traffic simulators do not have guidance improving it. Quoting Peter Drucker: "If you can't measure it, you can't improve it".
+Even though multiple articles agree on the need of realism in non-player characters, the creators of traffic simulators do not have guidance improving it. Having aspects and measurements of human-likeliness in NPC driving could be useful improving realism in vehicle traffic simulators dedicated for teaching self driving cars. Quoting Peter Drucker: "If you can't measure it, you can't improve it".
 
 % Introding my approach
 %Self-driving cars are already sharing the same environment with human controlled cars. However, due to variation of driving properties in human drivers such real world inevitably introduces situations which were not thought of when training the AI of a self driving car.
@@ -139,7 +139,6 @@ Even though multiple articles agree on the need of realism in non-player charact
 %A shortcoming of the original approach is that the synthetic travellers can only replan between iterations [17]; so-called “within-day” or “en-route” replanning [2] is not possible. However, in some applications it is difficult, or impossible, to model appropriately without the ability to generate or modify plans reactively during the withinday execution. For example, to understand possible emergency evacuation scenarios, it does not make sense to evolve a stable equilibrium. Rather one wants to model individuals dynamically adjusting their plans depending on the unfolding situation. Similarly, within a transport simulation, it is difficult to model taxis in the standard manner. It is far preferable to have them dynamically determine their plans throughout the day. \cite{Padgham2014}
 
 %As a traffic simulation tool, commercial software as computer games, a good example is Cities Skylines, do not fall behind purpose build traffic simulator software. The computer game Cities Skyline is used as an eductional tool for real estate and land use planning studies. It allows simulating and measuring intersections as sophisticated as Three level Roundabout, Diverging Windmill, Turbine, Stack interchange, etc. \cite{Haahtela2015}
-
 
 
 
@@ -195,23 +194,23 @@ In order to reach the goal the following \textbf{required} tasks are raised:
 	\item Using the benchmarking method, assess CARLA simulator and SUMO simulator integrated with Unity3D.
 \end{enumerate}
 
-To further verify provided assessment method, the following \textbf{desired} tasks could be raised:
-\begin{enumerate}
-	\item Analyze whether application of neural networks could induce improvements in NPC human-likeliness.
-	\item Select a part of driving algorithm for potential improvement of human-likeliness;
-	\item Teach neural network to act in particular driving activity;
-	\item Integrate the new neural network based driving related algorithm with other algorithms;
-	\item Measure properties of the new algorithm in selected vehicle traffic simulator.
-\end{enumerate}
+%To further verify provided assessment method, the following \textbf{desired} tasks could be raised:
+%\begin{enumerate}
+%	\item Analyze whether application of neural networks could induce improvements in NPC human-likeliness.
+%	\item Select a part of driving algorithm for potential improvement of human-likeliness;
+%	\item Teach neural network to act in particular driving activity;
+%	\item Integrate the new neural network based driving related algorithm with other algorithms;
+%	\item Measure properties of the new algorithm in selected vehicle traffic simulator.
+%\end{enumerate}
 
 % Could use The belief–desire–intention (BDI) model of human practical reasoning was developed by Michael Bratman as a way of explaining future-directed intention.
 
-\section{Research Hypothesis}
+%\section{Research Hypothesis}
 %Applying reinforcement and imitation learning on parts of actor behavior properties induces human-like behavior properties.
 
-Having aspects and measurements of human-likeliness in NPC driving is useful improving realism in vehicle traffic simulators dedicated for teaching self driving cars.
+%Having aspects and measurements of human-likeliness in NPC driving is useful improving realism in vehicle traffic simulators dedicated for teaching self driving cars.
 
-\section{Research Method}
+%\section{Research Method}
 %Writing this thesis, the following methodology will be applied:
 %
 %\begin{enumerate}
@@ -245,38 +244,38 @@ Having aspects and measurements of human-likeliness in NPC driving is useful imp
 %		\end{enumerate}
 %\end{enumerate}
 
-Writing this thesis, the following methodology will be applied:
-
-\begin{enumerate}
-	\item Formation of research subject and preparation
-		\begin{enumerate}
-			\item Fine-graining of research subject
-			\item Selection of literature
-			\item Selection of research method
-			\item Development of research plan
-		\end{enumerate}
-	\item Scientific literature analysis and summary
-		\begin{enumerate}
-			\item Analysis of technological solutions of NPC driving in traffic simulation algorithms;
-			\item Analysis of human driving measurement methods and metrics;
-			\item Analysis of NPC driving issues existing in traffic simulation algorithms;
-			\item Analysis of approaches taken to create more realistic simulations.
-		\end{enumerate}
-	\item Preparation for experiment
-		\begin{enumerate}
-			\item Definition of NPC human likeliness criteria and metrics;
-			\item Principles of creating a method to assess human behavior in NPC driving;
-			\item Feasibility study on extraction of metrics of NPC drivers;
-		\end{enumerate}
-	\item Conduction of experiment
-		\begin{enumerate}
-			\item Development of assessment method;
-			\item Selection of traffic simulators to assess;
-			\item Implementation of measurement retrieval;
-			\item Assessment of traffic simulators;
-			\item Comparison of traffic simulators.
-		\end{enumerate}
-\end{enumerate}
+%Writing this thesis, the following methodology will be applied:
+%
+%\begin{enumerate}
+%	\item Formation of research subject and preparation
+%		\begin{enumerate}
+%			\item Fine-graining of research subject
+%			\item Selection of literature
+%			\item Selection of research method
+%			\item Development of research plan
+%		\end{enumerate}
+%	\item Scientific literature analysis and summary
+%		\begin{enumerate}
+%			\item Analysis of technological solutions of NPC driving in traffic simulation algorithms;
+%			\item Analysis of human driving measurement methods and metrics;
+%			\item Analysis of NPC driving issues existing in traffic simulation algorithms;
+%			\item Analysis of approaches taken to create more realistic simulations.
+%		\end{enumerate}
+%	\item Preparation for experiment
+%		\begin{enumerate}
+%			\item Definition of NPC human likeliness criteria and metrics;
+%			\item Principles of creating a method to assess human behavior in NPC driving;
+%			\item Feasibility study on extraction of metrics of NPC drivers;
+%		\end{enumerate}
+%	\item Conduction of experiment
+%		\begin{enumerate}
+%			\item Development of assessment method;
+%			\item Selection of traffic simulators to assess;
+%			\item Implementation of measurement retrieval;
+%			\item Assessment of traffic simulators;
+%			\item Comparison of traffic simulators.
+%		\end{enumerate}
+%\end{enumerate}
 
 
 \section{Expected Results}
