@@ -1,0 +1,147 @@
+\documentclass{beamer}
+
+\setbeamerfont{framesubtitle}{size=\Large}
+\setbeamerfont{frametitle}{size=\huge}
+
+
+\usepackage{tikz}
+\usepackage{verbatim}
+
+\RequirePackage{polyglossia} 
+\setdefaultlanguage{english}
+\setotherlanguage{lithuanian}
+
+\title{An Assessment Method for Human-Like Behavior of Non-Player Characters in Vehicle Traffic Simulators}
+\subtitle{Eismo simuliacijose simuliuojamų eismo dalyvių žmogiškos elgsenos vertinimo metodas}
+\author[shortname]{Kazimieras Senvaitis \and \\ Vadovas: Asist., Dr. Vytautas Valaitis  \and \\ Recenzentas: Partn. Prof., Dr. Vytautas Ašeris}
+\date{2018-12-19}
+
+\addtobeamertemplate{frametitle}{}{
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[height=1.5cm]{mif-logo.png}};
+	\end{tikzpicture}}
+
+\begin{document}
+
+	
+\maketitle
+
+
+\section{Dalykinės srities problematika}
+
+\subsection{Autonominių automobilių mokymas}
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+\begin{itemize}
+	\item Autonominio vairavimo tyrimai fiziniame pasaulyje suvaržyti infrastruktūros kainos bei logistikos sunkumų;
+	\item Vienu automobiliu surinktos informacijos kiekis nepakankamas padengti įvairiems kritiniams atvejams, kurie turi būti apdoroti mokant ir validuojant dirbtinį intelektą;
+	\item Daugumai tyrėjų autonominų automobilių mokymas ir validavimas fizinėje aplinkoje nepasiekiamas.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Esami sprendimai}
+
+\subsection{Autonominių automobilių mokymas}
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+\begin{itemize}
+	\item Modernūs AAA tipo atviro pasaulio kompiuteriniai žaidimai;
+	\item Mikroskopinių 2D eismo simuliatorių integravimas su 3D aplinka;
+	\item Specialūs simuliatoriai autonominių automobilių mokymui.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Esamų sprendimų problematika}
+
+\subsection{Autonominių automobilių mokymas}
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+\begin{itemize}
+	\item Simuliatoriaus realistiškumas priklauso nuo simuliuojamų eismo dalyvių elgsenos realistiškumo;
+	\item Simuliuojamų eismo dalyvių elgsena paremta griežtomis mažai varijuojančiomis taisyklėmis, sudarytomis iš tikrovės neatspindinčių prielaidų;
+	\item Sunku tobulinti eismo dalyvių elgsenos realistiškumą neturit aspektų bei metrikų;
+	\item Autonominių automobilių intelektas apmokytas naudojant esamus sprendimus, tikėtinai per daug ydingas naudojimui realiame eisme.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Tyrimo objektas}
+
+
+%\subsection{Autonominių automobilių mokymas}
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+Eismo simuliatoriuose, skirtuose autonominių automobilių mokymui, simuliuojamų eismo dalyvių žmogiška elgsena, įskaitant:
+\begin{itemize}
+	\item Žmogiško vairavimo aspektus;
+	\item Žmogiško vairavimo matavimą;
+	\item Simuliuojamų eismo dalyvių algoritmus;
+	\item Žmogiškos elgsenos metrikų skaitymas iš eismo simuliacijų.
+\end{itemize}
+\end{frame}
+
+
+\section{Tikslas ir uždaviniai}
+\begingroup
+\small% \small in 11pt base font is 10pt
+\begin{frame}{\insertsection}
+	\framesubtitle{\insertsubsection}
+	\vspace{-30.5pt}
+%	\textbf{Tikslas}\\
+	
+	Sukurti eismo simuliacijose simuliuojamų eismo dalyvių žmogiškos elgsenos vertinimo metodą. Iškelti uždaviniai:
+	
+%	\textbf{Užduotys}
+	\begin{enumerate}
+		\item Naudojant GRL dekomponuoti vairavimo užduotis simuliuojamų eismo dalyvių algoritmuose, simuliatoriuose CARLA ir SUMO;
+		\item Sukurti belief-desire-intention (BDI) modelį apibūdinantį žmogiško vairavimo savybes;
+		\item Sukurti BDI modeliu paremtus scenarijus specifinių vairavimo užduočių analizei;
+		\item Paruošti vairavimo aplinką leidžiančią žmonėms atlikti specifines vairavimo užduotis ir leidžiančią matuoti jų įvykdymą;
+		\item Atlikti žmogaus vairavimo charakteristikų surinkimą naudojant paruoštą vairavimo aplinką;
+		\item Sintezuoti žmogaus vairavimo charakteristikas į vertinimo metodą;
+		\item Naudojant vertinimo metodą įvertinti CARLA simuliatorių ir SUMO simuliatorių integruotą su Unity3D.
+	\end{enumerate}
+\end{frame}
+\endgroup
+
+\section{Laukiami rezultatai}
+\begingroup
+\small% \small in 11pt base font is 10pt
+\begin{frame}{\insertsection}
+\framesubtitle{\insertsubsection}
+\vspace{-30.5pt}
+\begin{enumerate}
+	\item Pateiktos dekomponuotos vairavimo užduotys, kurios bendros simuliuojamų eismo dalyvių algoritmams ir galėtų būti analizuojamos ir matuojamos žmogiškumo aspektu;
+	\item Sukurtas belief-desire-intention (BDI) modelis apibūdinantis žmogiškumo savybes vairavime, išryškinantis aspektus, kurių trūksta eismo simuliatoriams;
+	\item Sukurti scenarijai, kurie orientuoti į žmogiškos elgsenos pasireiškimą ir leistų analizuoti ir matuoti žmogaus vairavimo charakteristikas;
+	\item Paruošta vairavimo aplinka su vykdymo metrikų įrašymu, leidžianti žmonėms atlikti specifinius scenarijus;
+	\item Atliktas eksperimentas žmogaus vairavimo savybėms surinkti, surinkti matavimai;
+	\item Sintezuotos žmogaus vairavimo savybės ir suformuluotas vertinimo metodas žmogiškumo vertinimui specifiniuose scenarijuose;
+	\item Naudojant suformuluotą žmogiškumo savybių vertinimo metodą palyginti simuliuojami eismo dalyviai simuliatoriuose CARLA ir SUMO integruotame su Unity3D, pateiktos įžvalgos tobulinimui.
+\end{enumerate}
+\end{frame}
+\endgroup
+
+%\section{Results and conclusions}
+
+%\begin{frame}
+%	\frametitle{Results}
+%	\begin{enumerate}
+%		\item item 1
+%	\end{enumerate}
+%\end{frame}
+%
+%\begin{frame}
+%	\frametitle{Conclusions}
+%	\begin{enumerate}
+%		\item item 2
+%	\end{enumerate}
+%\end{frame}
+
+
+\end{document}
