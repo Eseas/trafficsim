@@ -53,12 +53,13 @@
 \titleineng{Eismo simuliacijose simuliuojamų eismo dalyvių žmogiškos elgsenos vertinimo metodas}
 %\titleineng{Aktorių modeliu remtų sprendimo priėmimo algoritmų naudojamų mikroskopinėse transporto eismo simuliacijose tobulinimas žmogiškos elgsenos aspektu}
 \status{1st year master student}
-\author{Kazimieras Senvaitis}
+\author{Kazimieras Senvaitis, B. Sc.}
 \supervisor{Assist. Prof., Dr. Vytautas Valaitis}
 \reviewer{Partnership Prof., Dr. Vytautas Ašeris}
 \date{Vilnius – \the\year}
 
-\bibliography{trafficsim}
+%\bibliography{trafficsim}
+\bibliography{library}
 
 \begin{document}
 \maketitle
@@ -76,7 +77,11 @@
 % Introduce problems that exist in life
 \textbf{Problematic in domain}
 
-Research in autonomous driving is constrained by infrastructure costs and the logistical difficulties of training and testing autonomous systems in the physical world. Instrumenting and operating even a single robotic car requires large investments and personnel. Furthermore, a single vehicle is far from sufficient for collecting the required data that cover the number of corner cases that must be processed for both training and validation. This holds true for classic modular pipelines and even more so for data-hungry deep learning techniques. Thus, training and validation of autonomous driving models in the physical world are far beyond the reach of most researchers \cite{Dosovitskiy2017}. 
+Research in autonomous driving is constrained by infrastructure costs and the logistical difficulties of training and testing autonomous systems in the physical world. Instrumenting and operating even a single robotic car requires large investments and personnel \cite{Dosovitskiy2017}.
+
+Furthermore, a single vehicle is far from sufficient for collecting the required data that cover the number of corner cases that must be processed for both training and validation. This holds true for classic modular pipelines and even more so for data-hungry deep learning techniques \cite{Dosovitskiy2017}.
+
+Thus, training and validation of autonomous driving models in the physical world are far beyond the reach of most researchers. A more accessible alternative is to perform training and validation of driving strategies in computer-based environments \cite{Dosovitskiy2017}. 
 
 %Traffic congestion has become a major problem of the urbanized world. It is very common to find population densities of several thousand persons per square mile in major cities throughout the world \cite{Imsand2013}.  Congestion in the US has increased substantially over the last 25 years with mas- sive amounts of losses pertaining to time, fuel and money \cite{Jain2012}. 
 
@@ -93,23 +98,42 @@ Some computer games are used to provide an environment for training self-driving
 
 However, since GTA-V was not developed as a research tool, it is difficult to collect data from the game. Community created game modification scripts are required to even begin the development of ways to retrieve data from the game, and even then an extensive understanding of the game APIs and composition is required to develop methods to gather the required affordance indicators. While it is possible to collect the data from video games, it is more beneficial to have a simulator merely dedicated to the purpose of training and testing autonomous vehicles. This leads to another drawback of GTA-V, its extensibility. While it is possible to write scripts to access particular variables in the game, it does not natively support any add-ons and is difficult to add custom 3D models to the game. Though the environment of GTA-V is large and diverse, there is still a limited amount of different scenes that can be made. For example, most areas of the game are in the urban setting, lacking suburban or rural scenes, and thus, leading to a relatively limited amount of data being available for those environments \cite{Martinez2017}.
 
-There are also approaches of linking microscopic 2D traffic simulators with 3D environments. One such 2D traffic simulator is "Simulation of Urban MObility", or "SUMO" for short, which is an open source, microscopic, multi-modal traffic simulation. It allows simulating how a traffic consisting of single vehicles moves through a given road network. The simulation allows addressing a large set of traffic management topics. Being purely microscopic, it models each vehicle explicitly: has an own route and moves reactively through the road network. Though such simulations are deterministic by default, there are various options for introducing randomness \cite{Behrisch2011}.
+There are also approaches of linking microscopic 2D traffic simulators with 3D 
+environments. One such 2D traffic simulator is "Simulation of Urban MObility", 
+or "SUMO" for short, which is an open source, microscopic, multi-modal traffic 
+simulation. It allows simulating how a traffic consisting of single vehicles 
+moves through a given road network. The simulation allows addressing a large 
+set of traffic management topics. Being purely microscopic, it models each 
+vehicle explicitly: has an own route and moves reactively through the road 
+network. Though such simulations are deterministic by default, there are 
+various options for introducing randomness \cite{Behrisch2011}.
 
 SUMO can be made to communicate with the Unity3D game engine, allowing 3D representation of high detail modeled and simulated 2D urban environments. The 3D environment is additionally populated with static urban objects (trees, houses, etc) and transformed road signs, line markings. As a result, it provides a configurable urban traffic environment \cite{Biurrun2017}. 
 
-Moreover, there are a few purpose-built simulators for training self-driving cars. One of them is CARLA, an open-source simulator for autonomous driving research. CARLA has been developed from scratch to support development, training, and validation of autonomous urban driving systems. It also provides open digital assets (urban layouts, buildings, vehicles, etc.) that were created for this purpose. The simulation platform provides a flexible specification of sensor suites and environmental conditions. This simulator was used to analyze the performance of common approaches to autonomous driving: an end-to-end model trained via reinforcement learning, an end-to-end model trained via imitation learning, and a classic modular pipeline. The approaches were evaluated in controlled scenarios of increasing difficulty, and their performance was examined via metrics provided by CARLA, exhibiting the utilities for autonomous driving research \cite{Dosovitskiy2017}. 
+Moreover, there are a few purpose-built simulators for training self-driving cars. One of them is CARLA, an open-source simulator for autonomous driving research. CARLA has been developed from scratch to support development, training, and validation of autonomous urban driving systems. It also provides open digital assets (urban layouts, buildings, vehicles, etc.) that were created for this purpose. The simulation platform provides a flexible specification of sensor suites and environmental conditions \cite{Dosovitskiy2017}. 
 
-CARLA paper emphasizes that one of the challenges in the development was the configuration of the behavior of non-player characters (NPC), which is important for realism. The non-player vehicles were based on the standard UE4 vehicle model (PhysXVehicles) with kinematic parameters adjusted for realism. CARLA team implemented a basic controller which controls non-player vehicle behavior, such as lane following, respecting traffic lights, speed limits and decision making at intersections. This simulator not only includes non-player vehicles but also pedestrians. The developers are planning to integrate realism improving more advanced non-player vehicle controllers in the future \cite{Dosovitskiy2017}. 
+This simulator was used to analyze the performance of common approaches to autonomous driving: an end-to-end model trained via reinforcement learning, an end-to-end model trained via imitation learning, and a classic modular pipeline. The approaches were evaluated in controlled scenarios of increasing difficulty, and their performance was examined via metrics provided by CARLA, exhibiting the utilities for autonomous driving research. 
+%CARLA paper emphasizes that one of the challenges in the development was the configuration of the behavior of non-player characters (NPC), which is important for realism. 
+The non-player vehicles are based on the standard UE4 vehicle model (PhysXVehicles) with kinematic parameters adjusted for realism. CARLA team implemented a basic controller which controls non-player vehicle behavior, such as lane following, respecting traffic lights, speed limits and decision making at intersections. This simulator not only includes non-player vehicles but also pedestrians \cite{Dosovitskiy2017}. 
+%The developers are planning to integrate realism improving more advanced non-player vehicle controllers in the future \cite{Dosovitskiy2017}. 
 
 \textbf{Problematic in solutions}
 
-Research performed in both linking of SUMO to Unity3D and CARLA points out the importance of NPC behavior to realism. A detailed review of existing traffic models also states that models are built on too simplifying assumptions which delude driving dimensions of risk-taking and risk-perception \cite{Eskandarian2017}.
+%Research performed in both linking of SUMO to Unity3D and 
+CARLA paper emphasizes the importance of NPC behavior to realism. Additionally, 
+CARLA developers are planning to integrate realism-improving more advanced 
+non-player vehicle controllers in the future \cite{Dosovitskiy2017}. A detailed 
+review of existing traffic models also states that models are built on too 
+simplifying assumptions which delude driving dimensions of risk-taking and 
+risk-perception \cite{Eskandarian2017}. 
 
 A limited number of studies have been performed analyzing metrics of human-behavior in driving or even providing guidance of measuring it. One of such studies has been performed in the real world with a car-laboratory. The paper denies the correctness of assumption, that similarity must be observed for one driver doing the same maneuver or even in certain situations for different drivers. Authors concluded that even similar driving situations must be rethought as different drivers had various perceptions about the same situation in different time moments \cite{Blaszczyk2015}.
 
-Due to the variation of driving properties in human drivers, AI trained in such simulations potentially fails in real traffic as situations which were not included when training the AI arise. Simulation of a more human-like behavior traffic is also subject of interest in the R\&D department of AUDI group \cite{AUDI2018}.
+Due to the variation of driving properties in human drivers, AI trained in such simulations potentially fails in real traffic as situations which were not included when training the AI arise. Simulation of a more human-like behavior traffic is also a subject of interest in the R\&D department of AUDI group \cite{AUDI2018}.
 
-Even though multiple articles agree on the need for realism in non-player characters, the creators of traffic simulators do not have guidance improving it. Having aspects and measurements of human-likeliness in NPC driving could be useful for improving realism in vehicle traffic simulators dedicated to teaching self-driving cars. Quoting Peter Drucker: "If you can't measure it, you can't improve it".
+Even though multiple articles agree on the need for realism in non-player characters, the creators of traffic simulators do not have guidance improving it. Having aspects and measurements of human-likeliness in NPC driving could be useful.
+%for improving realism in vehicle traffic simulators dedicated to teaching self-driving cars.
+Quoting Peter Drucker: "If you can't measure it, you can't improve it".
 
 % Introding my approach
 %Self-driving cars are already sharing the same environment with human controlled cars. However, due to variation of driving properties in human drivers such real world inevitably introduces situations which were not thought of when training the AI of a self driving car.
@@ -145,7 +169,7 @@ Even though multiple articles agree on the need for realism in non-player charac
 %	\item Application of deep learning in microscopic vehicle traffic simulations;
 %\end{enumerate}
 
-The object of this research is non-player character human behavior likeliness in vehicle traffic simulators dedicated for teaching and validation of self driving cars, including:
+The object of this research is non-player character human-likeliness in traffic simulators used for training and validating self driving cars, including:
 \begin{enumerate}
 	\item Aspects of human-like behavior in driving;
 	\item Measurement of human behavior likeliness in driving;
@@ -172,9 +196,9 @@ The research target is to create a reliable method for assessment of human behav
 
 In order to reach the goal the following tasks are raised:
 \begin{enumerate}
-	\item Using Goal-oriented Requirements Language (GRL) decompose driving tasks in Non-Player Characters driving algorithms of open source traffic simulations CARLA \cite{Dosovitskiy2017} and SUMO \cite{Biurrun2017};
-	\item Create belief–desire–intention (BDI) model describing human driving properties;
-	\item Create BDI based scenarios for analysis of specific driving tasks;
+	\item Using Goal-oriented Requirements Language (GRL) decompose driving tasks in Non-Player Characters driving algorithms of open source traffic simulations CARLA and SUMO;
+	\item Create a belief–desire–intention (BDI) model describing human driving properties;
+	\item Create BDI-based scenarios for analysis of specific driving tasks;
 %	\item Obtain measurements of ideally performed driving task scenario;
 	\item Prepare driving environment allowing people to perform specific driving tasks and measurement of performance;
 	\item Perform human driving characteristics gathering using the prepared driving environment;
@@ -277,13 +301,70 @@ In order to reach the goal the following tasks are raised:
 %\end{enumerate}
 
 \begin{enumerate}
-	\item Provided decomposed driving tasks that are common in traffic simulator NPC driving algorithms, and could be analyzed and measured for human behavior likeliness;
-	\item Created a belief-desire-intention model describing properties of human driving which allows highlights aspects of human-likeliness missing or lacking in traffic simulators;
-	\item Created multiple scenarios, which are likely to induce human-like behavior, for analysis and measurement of human driving characteristics;
-	\item Prepared driving environment with performance recording properties for humans to perform specific scenarios;
-	\item Carried out the experiment of the human driving properties gathering and collected measurements;
-	\item Synthesized human driving characteristics and formulated assessment method for analyzing human-likeliness in particular scenarios;
-	\item Using the formulated assessment method compared non-player character human behavior likeliness in CARLA simulator and SUMO simulator integrated with Unity3D, and provided insights on improving it.
+	\item Provided decomposed driving tasks that are common in traffic 
+	simulator NPC driving algorithms, and could be analyzed and measured for 
+	human behavior likeliness.
+	
+	\textit{Validation}: Compare the driving tasks residing in algorithms to 
+	human driving tasks outlined in the book "Handbook of Intelligent Vehicles" 
+	\cite{Eskandarian2017};
+
+    %---------------------------------------------------------------
+
+	\item Created a belief-desire-intention model describing properties of 
+	human driving which allows highlights aspects of human-likeliness missing 
+	or lacking in traffic simulators;
+	
+	\textit{Validation}: Align the created human driving BDI model to an 
+	article explaining BDI architecture for agent-based modeling and simulation 
+	\cite{Caillou2017};
+	
+    %---------------------------------------------------------------
+	
+	\item Created multiple scenarios, which are likely to induce human-like 
+	behavior, for analysis and measurement of human driving characteristics;
+	
+	\textit{Validation}: Compare the scenarios (objectives, conditions, etc.) 
+	to the scenarios described in the article investigating human driving in the
+	physical world \cite{Blaszczyk2015};
+	
+    %---------------------------------------------------------------
+	
+	\item Prepared a virtual driving environment with performance recording 
+	properties for humans to perform specific scenarios;
+	
+	\textit{Validation}: Compare the prepared environment (sensors, 
+	measurements, etc.) to the environment described in the article 
+	investigating human driving in the physical world \cite{Blaszczyk2015};
+
+    %---------------------------------------------------------------
+
+	\item Carried out the experiment of the human driving properties gathering 
+	and collected measurements;
+	
+	\textit{Validation}: Compare the results of the experiment to the results 
+	described in the article investigating human driving in the physical world 
+	\cite{Blaszczyk2015};
+	
+    %---------------------------------------------------------------
+
+	\item Synthesized human driving characteristics and formulated assessment 
+	(benchmark) method for analyzing human-likeliness in particular scenarios;
+	
+	\textit{Validation}: Apply the method on selected simulators investigating 
+	the usability, correctness, determinism, property-coverage, 
+	result-comparability of the method. Also, compare the assessment method to 
+	other benchmarking methods for computer software;
+	
+    %---------------------------------------------------------------
+    
+	\item Using the formulated assessment method compared non-player character 
+	human behavior likeliness in CARLA simulator and SUMO simulator integrated 
+	with Unity3D, and provided insights on improving it.
+	
+	\textit{Validation}: Present the scores and the comparison to the 
+	developers of the open source simulators and survey them if it provides 
+	guidance and right measurements improving their simulators;
 	
 %	\item Provided guidance on obtaining NPC behavior metrics from traffic simulators;
 %	\item Provided measurement values describing human behavior in specific tasks;

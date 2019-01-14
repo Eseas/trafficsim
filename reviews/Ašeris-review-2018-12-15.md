@@ -24,11 +24,21 @@ Visumoje, darbas gynimui tinkamas, gali būti vertinamas teigiamai.
 
 ## Highlighted issues
 1. kartais per komplikuota anglų kalba
+    1. Poskyriui "Problematic in domain" pagerintas skaitomumas
+    1. Poskyriui "Problematic in solutions" pagerintas skaitomumas (1-a pastraipa).
 1. Darbe šiek tiek sudėtinga atskirti ribą, ties kuria pasibaigia autonominų mašinų (angl. self-driving cars) analizė, ir prasideda mašinų simuliacinėse aplinkose analizė.
+    1. Dabar visi poskyriai: "Problematic in domain", "Available solutions", "Problematic in solutions" aiškiai atskirti,
+    kad būtų lengviau suprasti, koks glaudus ryšys tarp autonominių automobilių ir eismo simuliacijų. Prieš taisymą buvo persipinančių (paskutinės "Available solutions" pastraipos ir "Problematic in solutions" pirma pastraipa).
+    1. "Problematic in domain" - pridėtas sakinys paaiškintantis šių tematikų sąryšį.
+
 1. Šią ribą sunku atskirti bei darbo uždaviniuose ir laukiamuose rezultatuose.
+    1. Manau, kad dabar įvadas leidžia suprasti, kokia glaudi yra sąsaja tarp autonominių automobilių ir eismo simuliacijų.
 1. Tyrimų objektas (bent jau pirmasis sakinys) galėtų būti aprašytas paprastesne, suprantamesne kalba - mokslinė kalba nebūtinai turi būti sunkiai suprantama ar skaitoma.
+    1. Dabar apibrėžta daug paprasčiau, skaitomiau.
 1. kaip bus vertinamas (t.y. matuojamas) metodo patikimumas ("reliable method"). Tai, manau, turėtų atsispindėti uždaviniuose - dabar tai neatsispindi.
+    1. Skyriuje "Expected Results" prie 6 ir 7 rezultatų aprašiau metodo validavimą.
 1. Analogiška pastaba taikytina ir rezultatams - daugelis laukiamų rezultatų (2-6) atrodo sunkiai pamatuojami (arba sunku numanyti, kaip jie bus pamatuoti).
+    1. Visiems laukiamiems rezultatams pridėtas validavimas.
 
 ## My response plan
 1. Reread, simplify, seperate long sentenses into shorter.
@@ -37,3 +47,7 @@ Visumoje, darbas gynimui tinkamas, gali būti vertinamas teigiamai.
 1. Make it more readable.
 1. Added validation of the results is likely to cover
 1. Add validation of the results
+
+## Additional issues from commission:
+1. What will be the method of evaluating?
+
